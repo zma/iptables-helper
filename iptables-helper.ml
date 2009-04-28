@@ -1,7 +1,5 @@
 let main () =
-  print_newline ();
-  print_string "Hello world!";
-  print_newline ();
+  print_string "Hello world!\n";
   exit 0;;
 
 main ();;
