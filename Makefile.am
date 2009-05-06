@@ -1,7 +1,9 @@
 bin_SCRIPTS = iptables-helper$(EXEEXT)
 
-PACKAGES = 
-LIBS     = 
+ACLOCAL_AMFLAGS = -I m4
+
+PACKAGES =
+LIBS     =
 
 iptables-helper$(EXEEXT): iptables-helper.cmo
 	$(OCAMLFIND) ocamlc $(PACKAGES) $(LIBS) $^ -o $@
