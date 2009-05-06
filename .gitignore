@@ -1,0 +1,9 @@
+*~
+Makefile.in
+Makefile
+configure
+config.log
+config.status
+aclocal.m4
+*.cm[io]
+iptables-helper
