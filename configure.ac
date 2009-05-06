@@ -1,4 +1,4 @@
-AC_INIT(ocaml-autoconf,1.0)
+AC_INIT([iptables-helper], [0.0.1])
 AM_INIT_AUTOMAKE
 
 AC_PROG_CC
