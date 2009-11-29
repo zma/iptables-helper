@@ -10,8 +10,6 @@ A tool that could help to understand and modify the scary iptables config file i
 
 The main theoretical background for this tool is described in [2]. The firewall decision diagram (FDD, for short) is the data structure model representing the firewall and it helps to ensure the consistency and the completeness. Five algorithms based on the FDD given in the paper are the complete solution for generating optimized and simple firewall from the FDD. The paper covers a large enough subset that will be used in practice. The FDD is friendly for implementation, since it is an acyclic directed graph. Many of the operations on the FDD are similar to those on directed graph. By using the methods provided in the paper for minimizing the firewall rules, so we could get a good amount of optimization.
 
-In practice, I will implement as much as I can of the followings during Google Summer of Code:
-
 (1) Construct data structures to represent FDDs and perform basic operations on them.
 (2) Implement methods to parse one iptables chain into an FDD.
 (3) Implement operation (a) described as "What does chain X do to packets that look like this ?" from above based on that representation.
