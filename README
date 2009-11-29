@@ -1,34 +1,12 @@
-== Why do you want to work with our team? ==
-
-I love Fedora and I love Linux. I am a Fedora user for about three years. I like to work with a team which produces this leading, bleeding edge and powerful linux distribution. I want to contribute my efforts to the free culture movement. I know everyone is invited to join the community and will get help to start. So I like to work with the team.
-
-== Do you have any past involvement with our team or another open source project? ==
-
-No. This will be the first time I work with an open source project.
-
-== Why should we choose you over other applicants? ==
-
-I am a final year student of Computer Science and Engineering in Fudan University, China. And I will be a postgraduate candidate of Computer Science and Engineering in Hong Kong University of Science and Technology after graduation. I love to do the project which is a mixture of theory and practice such as the better iptables management project. I have much time this summer. So I hope I can make some contribution to the Fedora project.
-
-I have had some discussion with David Lutterkort by email. He has given me plenty of valuable directions such as the theory background and many of details about implementation.
-
-Besides, I have much experience of programming and I like to learn new things. I think my background, knowledge and skills make me suitable for this project.
-
-== Proposal Description ==
-
-* An overview of your proposal
+* Overview
 
 I will write a tool to help understand and modify iptables config. This tool can answer questions like "What does chain X do to packets that look like this ?" and "Modify chain X to ACCEPT/DROP/REJECT packets that look like this". It will help iptables config management.
 
-* The need you believe it fulfils
+* The need it fulfils
 
 A tool that could help to understand and modify the scary iptables config file in a way that avoiding redundant rules would be very useful. When a program needs to modify the config file, it can get the chain required as output only by inputting the original chain and the modification requirements to this tool. And the tool can ensure that the firewall is consistent, complete and compact. An optimized iptables config without redundant rules will help to save a lot of CPU cycles.
 
-* Any relevant experience you have
-
-As a final year student of Computer Science and Engineering, I have much programming experience. I have participated in two projects in laboratories and completed one project for a company by myself. A brief description of my experiences can be found in my homepage [1].
-
-* How you intend to implement your proposal
+* Implementation
 
 The main theoretical background for this tool is described in [2]. The firewall decision diagram (FDD, for short) is the data structure model representing the firewall and it helps to ensure the consistency and the completeness. Five algorithms based on the FDD given in the paper are the complete solution for generating optimized and simple firewall from the FDD. The paper covers a large enough subset that will be used in practice. The FDD is friendly for implementation, since it is an acyclic directed graph. Many of the operations on the FDD are similar to those on directed graph. By using the methods provided in the paper for minimizing the firewall rules, so we could get a good amount of optimization.
 
@@ -44,28 +22,12 @@ The basic data model used would be based on how packets are actually represented
 
 The frameworks for operation (a) and (b) are as follows. Operation (a) can be done by traveling the FDD. The result is the label on the terminal node. But values for some of the fields in the FDD are not set in input, since the input is a description of a set of packets rather than a packet. We would output information on what happens for any value of these fields. This can be done by reducing the FDD as the follow steps: reduce the FDD by using the values for fields that are known, only keeping those parts of the FDD that are reachable when these fields has the values given, then output that reduced FDD. For Operation (b): First, parse all the current iptables chain to the FDD. Second, parse the rules given by the user to this FDD. Third, minimize the FDD, using the five algorithms introduced in the paper [2]. Finally, output the iptables chain. We will avoid outputting anything if the user-supplied rules are already represented in the FDD.
 
-This tool will be implemented in the OCaml programming language. OCaml is a very powerful functional language and it would be much easier to complete this  project in OCaml.
+This tool was planned to be implemented in the OCaml programming language. OCaml is a very powerful functional language and it would be much easier to complete this  project in OCaml. But I intend to implement this project in C now. I am very sorry for the time delayed and the change of the programming language.
 
 Since the number of options and possible rules for iptables is overwhelming, I will stick with a relatively small subset of iptables match criteria and then expand that over time once the overall program is working.
 
-* A rough timeline for your progress
-
-Apr 20 - May 23:   Learn OCaml; Familiarize more with iptables.
-May 23 - Jun 06:   Implement (1) described above.
-Jun 07 - Jun 20:   Implement (2).
-Jun 21 - Jul 04:   Implement (5).
-Jul 05 - Jul 13:   Complete the midterm report; prepare for the next phase.
-Jul 14 - Jul 28:   Implement (3).
-Jul 29 - Jul 16:   Implement (4).
-Aug 17 - Aug 24:   Complete the final evaluations.
-Sep 03         :   Submit the code samples. 
-Sep 04 -       :   Continue this project, improve this tool and further enhance the features.
-
-I can use my spare time when I am a postgraduate student to continue this project if it is too much for GSoC.
-
 References:
 
-[1] http://homepage.fudan.edu.cn/~mazhiqiang/
 [2] http://www.cse.msu.edu/~alexliu/publications/FDD/fdd.pdf
 [3] http://www.networksorcery.com/enp/protocol/tcp.htm
 
