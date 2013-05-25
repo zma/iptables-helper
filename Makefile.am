@@ -5,12 +5,12 @@ ACLOCAL_AMFLAGS = -I m4
 PACKAGES =
 LIBS     =
 
-iptables-helper$(EXEEXT): iptables-helper.cmo
+iptables-helper$(EXEEXT): IptablesHelper.cmo
 	$(OCAMLFIND) ocamlc $(PACKAGES) $(LIBS) $^ -o $@
 
 .ml.cmo:
 	ocamlfind ocamlc $(PACKAGES) -dtypes -c $< -o $@
 
-EXTRA_DIST = iptables-helper.ml
+EXTRA_DIST = IptablesHelper.ml
 
 CLEANFILES = *.cmi *.cmo $(bin_SCRIPTS) *~

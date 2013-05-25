@@ -1,4 +1,4 @@
-AC_INIT([iptables-helper], [0.0.1])
+AC_INIT([IptablesHelper], [0.0.1])
 AM_INIT_AUTOMAKE
 
 AC_PROG_CC
