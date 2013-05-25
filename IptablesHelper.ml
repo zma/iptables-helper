@@ -13,7 +13,7 @@ let read_in_rules filename =
 
 let rec print_rules = function 
     [] -> ()
-  | e::l -> print_string e ; print_string "\n" ; print_rules l
+  | h :: t -> print_string h ; print_string "\n" ; print_rules t
 ;;
 
 let rec rm_comments = function
@@ -22,10 +22,10 @@ let rec rm_comments = function
 ;;
 
 let helper file_in =
-  let rules = read_in_rules file_in in
-  let rules2 = rm_comments rules in
+  let rules_in = read_in_rules file_in in
+  let rules = rm_comments rules_in in
     (* print_rules rules;; *)
-    print_rules rules2
+    print_rules rules
 ;;
 
 (* start works *)
