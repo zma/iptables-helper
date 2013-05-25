@@ -21,19 +21,16 @@ let rec rm_comments = function
     | h :: t -> if h.[0] = '#' then rm_comments t else h :: (rm_comments t)
 ;;
 
-(* args *)
-if Array.length Sys.argv != 2 then
-    raise (Invalid_argument "args is wrong. input the filename only")
+let helper file_in =
+  let rules = read_in_rules file_in in
+  (* print_rules rules;; *)
+  let rules2 = rm_comments rules in
+    print_rules rules2
 ;;
 
-let filename = Sys.argv.(1);;
-
-let rules = read_in_rules filename;;
-
-(* print_rules rules;; *)
-
-let rules2 = rm_comments rules;;
-
-print_rules rules2;;
+(* args *)
+match Sys.argv with
+    [| _; file_in |] -> helper file_in
+  | _ -> raise (Invalid_argument "args is wrong. input the filename only")
 
 
