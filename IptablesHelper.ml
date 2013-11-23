@@ -12,12 +12,12 @@ let read_in_rules filename =
 ;;
 
 let rec print_rules = function 
-    [] -> ()
+  | [] -> ()
   | h :: t -> print_string h ; print_string "\n" ; print_rules t
 ;;
 
 let rec rm_comments = function
-    [] -> []
+  | [] -> []
   | h :: t -> if h.[0] = '#' then rm_comments t else h :: (rm_comments t)
 ;;
 
@@ -30,6 +30,6 @@ let helper file_in =
 
 (* start works *)
 match Sys.argv with
-    [| _; file_in |] -> helper file_in
-  | _ -> raise (Invalid_argument "args is wrong. input the filename only")
+| [| _; file_in |] -> helper file_in
+| _ -> raise (Invalid_argument "args is wrong. input the filename only")
 
