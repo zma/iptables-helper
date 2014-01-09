@@ -15,8 +15,10 @@ let rec print_rules rs =
   List.iter (fun r -> print_endline r) rs
 
 let rec rm_comments rs =
+  (** Note: Only recognize lines with 1st char as '#' as comment.
+      TODO: support more patterns **)
   List.filter (
-    fun r -> if String.length r < 1 || r.[0] = '#' then false else true
+    fun r -> if String.length r > 0 && r.[0] = '#' then false else true
   ) rs
 
 let helper file_in =
@@ -25,7 +27,7 @@ let helper file_in =
   |> rm_comments
   |> print_rules
 
-(* start works *)
+(* start work *)
 let () =
   match Sys.argv with
   | [| _; file_in |] -> helper file_in
